@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package blockflow;
+
+message Block {
+  string hash = 1;
+  string previous_hash = 2;
+  string data = 3;
+  int64 timestamp = 4;
+  int64 nonce = 5;
+}
+
+message BlockResponse {
+  Block block = 1;
+  string error = 2;
+}

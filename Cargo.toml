@@ -1,0 +1,43 @@
+[package]
+name = "block-flow"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/qiaopengjun5162/block-flow"
+authors = ["Paxon Qiao <qiaopengjun0@gmail.com>"]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[profile.release]
+codegen-units = 1
+lto = "fat"
+panic = "abort"
+strip = true
+
+[profile.profiling]
+debug = "full"
+inherits = "release"
+strip = false
+
+[dependencies]
+anyhow = "1.0.97"
+prost = "0.13.5"
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
+sqlx = { version = "0.8.3", features = [
+    "runtime-tokio-rustls",
+    "postgres",
+    "chrono",
+    "uuid",
+] }
+thiserror = "2.0.12"
+tokio-stream = "0.1.17"
+tonic = { version = "0.12.3", features = ["gzip"] }
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.19", features = ["env-filter"] }
+windows-sys = "0.59.0" # 强制使用最新稳定版
+
+[dev-dependencies]
+tokio = { version = "1.44.1", features = ["rt", "rt-multi-thread", "macros"] }
+
+[build-dependencies]
+tonic-build = "0.12.3"
