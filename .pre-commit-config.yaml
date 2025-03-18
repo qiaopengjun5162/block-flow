@@ -15,6 +15,17 @@ repos:
     rev: 25.1.0
     hooks:
       - id: black
+
+  # - repo: https://github.com/tamasfe/taplo
+  #   rev: 0.9.3
+  #   hooks:
+  #     - id: taplo-fmt
+  #       name: TOML Formatting
+  #       entry: taplo fmt
+  #       args: [--option, reorder_keys=true]
+  #       language: system
+  #       types: [toml]
+  #       stages: [commit]
   - repo: local
     hooks:
       - id: cargo-fmt
@@ -59,3 +70,10 @@ repos:
         language: rust
         files: \.rs$
         pass_filenames: false
+      - id: taplo-fmt
+        name: TOML Formatting
+        entry: taplo fmt
+        args: [--option, reorder_keys=true]
+        language: system
+        types: [toml]
+        stages: [commit]
